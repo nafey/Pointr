@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Pointr</string>
+    <string name="title_activity_maps">Pointr</string>
+    <string name="title_activity_contacts">ContactsActivity</string>
+    <string name="default_phone_number">9000000001</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="welcome_text">Please enter your mobile number below</string>
+    <string name="title_activity_welcome">Welcome to Pointr</string>
+
+    <string name="button_post">Post</string>
+    <string name="button_get">Get</string>
+    <string name="button_send">Send</string>
+    <string name="title_activity_splash">Pointr</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="loading_stuff_text">Loading Stuff</string>
+</resources>
