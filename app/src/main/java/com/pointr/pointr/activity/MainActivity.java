@@ -34,9 +34,9 @@ public class MainActivity extends Activity implements
         SensorEventListener, Handled {
 
     private static final String TAG = "LOG__MapActivity";
-    private static final String URL_GET_SHARE = "http://naf.site11.com/getshare.php";
-    private static final String URL_POST_LOC = "http://naf.site11.com/postloc.php";
-    private static final String URL_POST_SHARE = "http://naf.site11.com/postshare.php";
+    private static final String URL_GET_SHARE = "http://www.pointr.me/getshare.php";
+    private static final String URL_POST_LOC = "http://www.pointr.me/postloc.php";
+    private static final String URL_POST_SHARE = "http://www.pointr.me/postshare.php";
 
     private static final int WELCOME_ACTIVITY_REQUEST_CODE = 1;
     private static final int CONTACTS_ACTIVITY_REQUEST_CODE = 2;
@@ -116,7 +116,7 @@ public class MainActivity extends Activity implements
 
     public void getLocationFromOther(View view) {
         HashMap<String, String> get = new HashMap<>();
-        get.put("tonum", MyHelper.getMyPhoneNum());
+        get.put("toNum", MyHelper.getMyPhoneNum());
         new MyGetThread(get, MainActivity.URL_GET_SHARE, new MyHandler(this)).start();
     }
 
@@ -249,7 +249,7 @@ public class MainActivity extends Activity implements
 //        });
 
         //Update your location on startup
-        //this.postLocation(null);
+        this.postLocation(null);
 
         //Set my phone number
         if (MyHelper.getMyPhoneNum().equals(this.getResources().getString(R.string.default_phone_number))) {

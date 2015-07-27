@@ -27,7 +27,6 @@ public class MyInitThread extends Thread {
 
             while ((MyLocationProvider.get().getStatus() != MyLocationProvider.STATUS_FAILED) &&
                     (MyLocationProvider.get().getStatus() != MyLocationProvider.STATUS_READY)) {
-
                 sleep(500);
             }
 
