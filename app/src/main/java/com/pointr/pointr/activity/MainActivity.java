@@ -16,10 +16,10 @@ import android.widget.TextView;
 import com.google.android.gms.maps.model.LatLng;
 import com.pointr.pointr.R;
 import com.pointr.pointr.component.DoubleText;
-import com.pointr.pointr.multithreading.Handled;
-import com.pointr.pointr.multithreading.MyGetThread;
-import com.pointr.pointr.multithreading.MyHandler;
-import com.pointr.pointr.multithreading.MyPostThread;
+import com.pointr.pointr.http.Handled;
+import com.pointr.pointr.http.MyGetThread;
+import com.pointr.pointr.http.MyHandler;
+import com.pointr.pointr.http.MyPostThread;
 import com.pointr.pointr.util.MyContactsProvider;
 import com.pointr.pointr.util.MyHelper;
 import com.pointr.pointr.util.MyLocationProvider;
@@ -54,27 +54,6 @@ public class MainActivity extends Activity implements
 
     private float[] mGravity;
     private float[] mGeomagnetic;
-
-//    private void drawMarkers() {
-//        Log.d(TAG, "drawMarkers()");
-//        this.googleMap.clear();
-//
-//        if (this.clickedLatLng != null) {
-//            this.googleMap.addMarker(new MarkerOptions().position(clickedLatLng));
-//        }
-//
-//        if (this.fetchedLatLng != null) {
-//            for(String key : this.fetchedLatLng.keySet()) {
-//                LatLng l = this.fetchedLatLng.get(key);
-//                this.googleMap.addMarker(new MarkerOptions().position(l));
-//            }
-//        }
-//
-//        if (MyLocationProvider.get().getStatus() != MyLocationProvider.STATUS_READY) return;
-//        if (MyLocationProvider.get().getMyLocation() != null) {
-//            this.googleMap.addMarker(new MarkerOptions().position(MyLocationProvider.get().getMyLocation()));
-//        }
-//    }
 
     public void processMarkerData(String content) {
         Log.d(TAG, "processMarkerData()");
@@ -223,30 +202,6 @@ public class MainActivity extends Activity implements
         this.layContacts = (LinearLayout) findViewById(R.id.layContact);
 
         this.fetchedLatLng = new HashMap<>();
-
-//        //Setup google map
-//        Log.d(TAG, "setting up map");
-//        if (googleMap == null) googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-//
-//
-//        googleMap.setTrafficEnabled(false);
-//        googleMap.setBuildingsEnabled(true);
-//
-//        //Zoom to my Location and add a marker
-//        if (MyLocationProvider.get().getStatus() == MyLocationProvider.STATUS_READY) {
-//            CameraPosition cmp = new CameraPosition(MyLocationProvider.get().getMyLocation(), 15, 0, 0);
-//            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cmp));
-//        }
-//
-//
-//
-//        this.googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-//            @Override
-//            public void onMapClick(LatLng latLng) {
-//                clickedLatLng = latLng;
-//                MapsActivity.this.drawMarkers();
-//            }
-//        });
 
         //Update your location on startup
         this.postLocation(null);

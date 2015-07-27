@@ -1,4 +1,4 @@
-package com.pointr.pointr.multithreading;
+package com.pointr.pointr.http;
 
 import android.content.Intent;
 import android.os.Bundle;

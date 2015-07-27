@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.pointr.pointr.R;
-import com.pointr.pointr.multithreading.Handled;
-import com.pointr.pointr.multithreading.MyHandler;
-import com.pointr.pointr.multithreading.MyInitThread;
+import com.pointr.pointr.http.Handled;
+import com.pointr.pointr.http.MyHandler;
+import com.pointr.pointr.http.MyInitThread;
 
 public class SplashActivity extends Activity implements Handled {
     private TextView txtLoading;
