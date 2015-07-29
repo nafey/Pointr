@@ -57,5 +57,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name="com.pointr.pointr.gcm.MyRegIntentService"
+            android:exported="false">
+        </service>
     </application>
 </manifest>

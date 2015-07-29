@@ -56,8 +56,6 @@ public class MyHelper {
     }
 
     public static String formatNumber(String str) {
-        Log.d(TAG, "formatNumber()");
-
         if (str.length() >= 10) return str.substring(str.length() - 10, str.length());
         else return str;
     }

@@ -17,14 +17,14 @@ public class MyRegIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
+        Log.d(TAG, "onHandleIntent()");
         try {
             synchronized (TAG) {
                 InstanceID instanceID = InstanceID.getInstance(this);
                 String token = instanceID.getToken(getString(R.string.gcm_senderId),
                         GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
                 // [END get_token]
-                Log.i(TAG, "GCM Registration Token: " + token);
+                Log.d(TAG, "GCM Registration Token: " + token);
             }
         } catch (Exception e) {
             Log.d(TAG, "Failed to complete token refresh", e);

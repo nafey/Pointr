@@ -13,9 +13,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.model.LatLng;
 import com.pointr.pointr.R;
 import com.pointr.pointr.component.DoubleText;
+import com.pointr.pointr.gcm.MyRegIntentService;
 import com.pointr.pointr.http.Handled;
 import com.pointr.pointr.http.MyGetThread;
 import com.pointr.pointr.http.MyHandler;
@@ -203,6 +206,16 @@ public class MainActivity extends Activity implements
 
         this.fetchedLatLng = new HashMap<>();
 
+        Log.d(TAG, "invoking registration service");
+        
+        if (checkPlayServices()) {
+            Log.d(TAG, "calling registration service");
+
+            // Start IntentService to register this application with GCM.
+            Intent intent = new Intent(this, MyRegIntentService.class);
+            startService(intent);
+        }
+
         //Update your location on startup
         this.postLocation(null);
 
@@ -236,5 +249,24 @@ public class MainActivity extends Activity implements
 
         if (MyLocationProvider.get().getStatus() != MyLocationProvider.STATUS_READY) return;
         mSensorManager.unregisterListener(this);
+    }
+
+    /**
+     * Check the device to make sure it has the Google Play Services APK. If
+     * it doesn't, display a dialog that allows users to download the APK from
+     * the Google Play Store or enable it in the device's system settings.
+     */
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this, 9000).show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 }
