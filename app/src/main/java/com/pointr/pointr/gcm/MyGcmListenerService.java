@@ -9,9 +9,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.gcm.GcmListenerService;
 import com.pointr.pointr.activity.MainActivity;
+import com.pointr.pointr.util.MyHelper;
 
 public class MyGcmListenerService extends GcmListenerService {
 
@@ -27,9 +29,12 @@ public class MyGcmListenerService extends GcmListenerService {
     // [START receive_message]
     @Override
     public void onMessageReceived(String from, Bundle data) {
+        Log.d(TAG, "onMessageReceived()");
         String message = data.getString("message");
         Log.d(TAG, "From: " + from);
-        Log.d(TAG, "Message: " + message);
+
+        //MyHelper.showStandardToast("Message Received");
+        //Log.d(TAG, "Message: " + message);
 
         /**
          * Production applications would usually process the message here.

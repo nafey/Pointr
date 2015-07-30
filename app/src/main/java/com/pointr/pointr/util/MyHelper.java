@@ -25,6 +25,11 @@ public class MyHelper {
         toast.show();
     }
 
+    public static void showStandardToast(String text) {
+        Toast toast = Toast.makeText(MyApplication.getAppContext(), text, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
     public static double getBearing(LatLng l1, LatLng l2) {
         double y = Math.sin(l2.longitude - l1.longitude) * Math.cos(l2.latitude);
         double x = Math.cos(l1.latitude) * Math.sin(l2.latitude) -

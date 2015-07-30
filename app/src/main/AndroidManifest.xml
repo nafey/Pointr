@@ -58,6 +58,13 @@
             </intent-filter>
         </activity>
         <service
+            android:name="com.pointr.pointr.gcm.MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
             android:name="com.pointr.pointr.gcm.MyRegIntentService"
             android:exported="false">
         </service>
