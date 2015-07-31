@@ -1,4 +1,4 @@
-package com.pointr.pointr.component;
+package com.pointr.pointr.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;

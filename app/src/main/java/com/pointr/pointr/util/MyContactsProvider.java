@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import com.pointr.pointr.activity.MyApplication;
-import com.pointr.pointr.component.Contact;
+import com.pointr.pointr.ui.MyApplication;
+import com.pointr.pointr.data.Contact;
 
 import java.util.ArrayList;
 import java.util.Collections;

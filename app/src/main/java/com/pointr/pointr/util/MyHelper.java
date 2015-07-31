@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.pointr.pointr.R;
-import com.pointr.pointr.activity.MyApplication;
+import com.pointr.pointr.ui.MyApplication;
 
 public class MyHelper {
     private static final String TAG = "LOG__MyHelper";

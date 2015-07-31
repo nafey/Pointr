@@ -1,4 +1,4 @@
-package com.pointr.pointr.activity;
+package com.pointr.pointr.ui;
 
 import android.app.Activity;
 import android.content.Intent;

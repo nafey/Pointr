@@ -1,7 +1,10 @@
-package com.pointr.pointr.component;
+package com.pointr.pointr.data;
 
 import android.support.annotation.NonNull;
 
+/**
+ * Represents an entry in client phonebook
+ */
 public class Contact implements Comparable<Contact> {
     private String name;
     private String num;

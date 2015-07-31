@@ -8,7 +8,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
-import com.pointr.pointr.activity.MyApplication;
+import com.pointr.pointr.ui.MyApplication;
 
 public class MyLocationProvider implements
         GoogleApiClient.ConnectionCallbacks,

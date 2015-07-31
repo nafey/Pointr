@@ -9,11 +9,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.gcm.GcmListenerService;
-import com.pointr.pointr.activity.MainActivity;
-import com.pointr.pointr.util.MyHelper;
+import com.pointr.pointr.ui.MainActivity;
 
 public class MyGcmListenerService extends GcmListenerService {
 

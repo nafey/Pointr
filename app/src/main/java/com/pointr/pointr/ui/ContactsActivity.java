@@ -1,4 +1,4 @@
-package com.pointr.pointr.activity;
+package com.pointr.pointr.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.pointr.pointr.R;
-import com.pointr.pointr.component.Contact;
+import com.pointr.pointr.data.Contact;
 import com.pointr.pointr.util.MyContactsProvider;
 
 import java.util.ArrayList;

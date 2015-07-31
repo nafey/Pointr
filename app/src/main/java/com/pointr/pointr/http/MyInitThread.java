@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.pointr.pointr.activity.MainActivity;
-import com.pointr.pointr.activity.SplashActivity;
+import com.pointr.pointr.ui.MainActivity;
+import com.pointr.pointr.ui.SplashActivity;
 import com.pointr.pointr.util.MyContactsProvider;
 import com.pointr.pointr.util.MyLocationProvider;
 

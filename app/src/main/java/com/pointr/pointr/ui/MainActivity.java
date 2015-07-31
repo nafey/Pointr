@@ -1,4 +1,4 @@
-package com.pointr.pointr.activity;
+package com.pointr.pointr.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +17,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.model.LatLng;
 import com.pointr.pointr.R;
-import com.pointr.pointr.component.DoubleText;
 import com.pointr.pointr.gcm.MyRegIntentService;
 import com.pointr.pointr.http.Handled;
 import com.pointr.pointr.http.MyGetThread;
