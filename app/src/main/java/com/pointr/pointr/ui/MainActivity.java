@@ -17,6 +17,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.model.LatLng;
 import com.pointr.pointr.R;
+import com.pointr.pointr.data.MyDatabaseHelper;
 import com.pointr.pointr.gcm.MyRegIntentService;
 import com.pointr.pointr.http.Handled;
 import com.pointr.pointr.http.MyGetThread;
@@ -204,6 +205,14 @@ public class MainActivity extends Activity implements
         this.layContacts = (LinearLayout) findViewById(R.id.layContact);
 
         this.fetchedLatLng = new HashMap<>();
+
+        Log.d(TAG, "Initializing database");
+        MyDatabaseHelper db = new MyDatabaseHelper(this);
+
+        int x = db.getPointrCount();
+
+        Log.d(TAG, "The number of records is " + x);
+
 
         Log.d(TAG, "invoking registration service");
         
