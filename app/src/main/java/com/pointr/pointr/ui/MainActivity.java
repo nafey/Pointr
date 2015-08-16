@@ -100,7 +100,7 @@ public class MainActivity extends Activity implements
 
     public void getLocationFromOther(View view) {
         HashMap<String, String> get = new HashMap<>();
-        get.put("tonum", MyHelper.getMyPhoneNum());
+        get.put("to", MyHelper.getMyPhoneNum());
         new MyGetThread(get, MainActivity.URL_GET_SHARE, new MyHandler(this)).start();
     }
 
@@ -211,9 +211,6 @@ public class MainActivity extends Activity implements
 
         Log.d(TAG, "Initializing database");
         MyDatabaseHelper db = new MyDatabaseHelper(this);
-
-        //db.addPointr("9008387737", 12.34f, 23.34f);
-
 
         List<Pointr> pointrs = db.getAllPointrs();
 
