@@ -69,6 +69,8 @@ public class MyGetThread extends Thread {
             Bundle msgBundle = new Bundle();
             msgBundle.putString("result", content);
 
+            Log.d(TAG, "Data is " + content);
+
             Message message = new Message();
             message.setData(msgBundle);
 

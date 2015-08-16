@@ -28,7 +28,7 @@ public class WelcomeActivity extends Activity {
 
         String input = this.txtPhone.getText().toString();
         if (!MyHelper.isCorrectNumberFormat(input)) {
-            MyHelper.showStandardToast(this, "Incorrect phone number");
+            MyHelper.showStandardToast("Incorrect phone number");
             return;
         }
 

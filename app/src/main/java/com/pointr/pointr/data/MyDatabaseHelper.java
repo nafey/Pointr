@@ -5,11 +5,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Point;
+import android.util.Log;
+
+import com.pointr.pointr.util.MyHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper{
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Database Name
     private static final String DATABASE_NAME = "MyDB";
@@ -42,7 +49,27 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    // Getting single pointr
+    public Pointr getPointr(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+
+        Cursor cursor = db.query(POINTR_TABLE_NAME, new String[] { NUM_COLUMN_NAME,
+                        LAT_COLUMN_NAME, LNG_COLUMN_NAME}, NUM_COLUMN_NAME + "=?",
+                new String[] { id }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            Pointr pointr = new Pointr(cursor.getString(0), cursor.getFloat(1), cursor.getFloat(2));
+            return pointr;
+        } else {
+            return null;
+        }
+    }
+
     public void addPointr(String num, float lat, float lng) {
+        if (!MyHelper.isCorrectNumberFormat(num)) return;
+
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -50,10 +77,67 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
         values.put(LAT_COLUMN_NAME, lat);
         values.put(LNG_COLUMN_NAME, lng);
 
-        // Inserting Row
-        db.insert(POINTR_TABLE_NAME, null, values);
+        if (this.getPointr(num) == null) {
+            // Inserting Row
+            db.insert(POINTR_TABLE_NAME, null, values);
+        } else {
+            // Updating Row
+            db.update(POINTR_TABLE_NAME, values, NUM_COLUMN_NAME + "=?", new String[] { num });
+
+            Log.d("TAG","updated");
+        }
         db.close(); // Closing database connection
     }
+
+
+
+    // Getting All Pointrs
+    public List<Pointr> getAllPointrs() {
+        List<Pointr> pointrList = new ArrayList<Pointr>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + POINTR_TABLE_NAME;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Pointr pointr = new Pointr(cursor.getString(0), cursor.getFloat(1), cursor.getFloat(2));
+
+                // Adding contact to list
+                pointrList.add(pointr);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return pointrList;
+    }
+
+    // Updating single contact
+    public int updatePointr (Pointr pointr) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(NUM_COLUMN_NAME, pointr.getNum());
+        values.put(LAT_COLUMN_NAME, pointr.getLoc().latitude);
+        values.put(LNG_COLUMN_NAME, pointr.getLoc().longitude);
+
+        // updating row
+        return db.update(POINTR_TABLE_NAME, values, NUM_COLUMN_NAME + " = ?",
+                new String[] { String.valueOf(pointr.getNum()) });
+    }
+
+
+    // Deleting single contact
+    public void deletePointr(Pointr pointr) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(POINTR_TABLE_NAME, NUM_COLUMN_NAME + " = ?",
+                new String[]{String.valueOf(pointr.getNum())});
+        db.close();
+    }
+
+
 
     public int getPointrCount() {
         int ret;
@@ -67,5 +151,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
         cursor.close();
         return ret;
     }
+
+
 
 }

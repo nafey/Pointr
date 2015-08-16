@@ -18,6 +18,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.model.LatLng;
 import com.pointr.pointr.R;
 import com.pointr.pointr.data.MyDatabaseHelper;
+import com.pointr.pointr.data.Pointr;
 import com.pointr.pointr.gcm.MyRegIntentService;
 import com.pointr.pointr.http.Handled;
 import com.pointr.pointr.http.MyGetThread;
@@ -32,14 +33,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends Activity implements
         SensorEventListener, Handled {
 
-    private static final String TAG = "LOG__MapActivity";
-    private static final String URL_GET_SHARE = "http://www.pointr.me/getshare.php";
-    private static final String URL_POST_LOC = "http://www.pointr.me/postloc.php";
-    private static final String URL_POST_SHARE = "http://www.pointr.me/postshare.php";
+    private static final String TAG = "LOG__MainActivity";
+    private static final String URL_GET_SHARE = "http://www.pointr.me/scripts/getshare.php";
+    private static final String URL_POST_LOC = "http://www.pointr.me/scripts/postloc.php";
+    private static final String URL_POST_SHARE = "http://www.pointr.me/scripts/postshare.php";
 
     private static final int WELCOME_ACTIVITY_REQUEST_CODE = 1;
     private static final int CONTACTS_ACTIVITY_REQUEST_CODE = 2;
@@ -98,11 +100,12 @@ public class MainActivity extends Activity implements
 
     public void getLocationFromOther(View view) {
         HashMap<String, String> get = new HashMap<>();
-        get.put("toNum", MyHelper.getMyPhoneNum());
+        get.put("tonum", MyHelper.getMyPhoneNum());
         new MyGetThread(get, MainActivity.URL_GET_SHARE, new MyHandler(this)).start();
     }
 
     public void sendLocationToOther(View view) {
+
         Intent intent = new Intent(this, ContactsActivity.class);
         this.startActivityForResult(intent, MainActivity.CONTACTS_ACTIVITY_REQUEST_CODE);
     }
@@ -209,9 +212,12 @@ public class MainActivity extends Activity implements
         Log.d(TAG, "Initializing database");
         MyDatabaseHelper db = new MyDatabaseHelper(this);
 
-        int x = db.getPointrCount();
+        //db.addPointr("9008387737", 12.34f, 23.34f);
 
-        Log.d(TAG, "The number of records is " + x);
+
+        List<Pointr> pointrs = db.getAllPointrs();
+
+        Log.d(TAG, "The number of records is " + pointrs.size());
 
 
         Log.d(TAG, "invoking registration service");

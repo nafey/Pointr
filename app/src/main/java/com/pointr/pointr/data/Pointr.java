@@ -14,6 +14,11 @@ public class Pointr {
         this.loc = loc;
     }
 
+    public Pointr(String num, Float lat, Float lng) {
+        this.num =  num;
+        this.loc = new LatLng((double) lat, (double) lng);
+    }
+
     public String getNum() {
         return num;
     }
@@ -24,5 +29,10 @@ public class Pointr {
 
     public void setLoc(LatLng loc) {
         this.loc = loc;
+    }
+
+    @Override
+    public String toString() {
+        return "Num:" + this.num + ", Location " + loc.latitude + ", " + loc.longitude;
     }
 }
